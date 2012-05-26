@@ -10,7 +10,7 @@ Please note:
 - This library has been developed as part of the [onedb](http://www.onedb.de) project.
 
 Usage examples in the following for [Executors](https://github.com/mxro/oneUtils/blob/master/README.md#executors), 
-[Timers](https://github.com/mxro/oneUtils/blob/master/README.md#timers) and [Collections](https://github.com/mxro/oneUtils/blob/master/README.md#collections)
+[Timers](https://github.com/mxro/oneUtils/blob/master/README.md#timers) and [Collections](https://github.com/mxro/oneUtils/blob/master/README.md#collections).
 
 ## Executors
 
