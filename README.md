@@ -11,13 +11,17 @@ Please note:
 
 Usage examples in the following:
 
+- [Executors](https://github.com/mxro/oneUtils/blob/master/README.md#executors)
+- [Timers](https://github.com/mxro/oneUtils/blob/master/README.md#timers)
+- [Collections](https://github.com/mxro/oneUtils/blob/master/README.md#collections)
+
 ## Executors
 
 The oneUtils concurrency API allows to define [Java Executor-style](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ExecutorService.html) 
 executors in GWT and/or JRE apps.
 
 ```java
-  	final Concurrency con = OneUtilsJre.newJreConcurrency();
+  		final Concurrency con = OneUtilsJre.newJreConcurrency();
 		// ^-- replace with 'new GwtConcurrency()' for GWT environments
 		// see https://gist.github.com/2791639
 
@@ -97,8 +101,8 @@ executors in GWT and/or JRE apps.
 The oneUtils concurrency API provides an abstract API for the creation of Timers in GWT and JRE environments.
 
 ```java
-    final Concurrency con = OneUtilsJre.newJreConcurrency();
-  	// ^-- replace with 'new GwtConcurrency()' for GWT environments
+    		final Concurrency con = OneUtilsJre.newJreConcurrency();
+  		// ^-- replace with 'new GwtConcurrency()' for GWT environments
 		// see https://gist.github.com/2791639
 
 		// -----
@@ -141,7 +145,7 @@ The API further allows for an abstract way to create thread-safe collections (us
 compile in a GWT app).
 
 ```java
-  	final Concurrency con = OneUtilsJre.newJreConcurrency();
+  		final Concurrency con = OneUtilsJre.newJreConcurrency();
 		// ^-- replace with 'new GwtConcurrency()' for GWT environments
 		// see https://gist.github.com/2791639
 
