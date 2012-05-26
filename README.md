@@ -9,11 +9,8 @@ Please note:
 - Please subscribe to my [blog](http://maxrohde.com) for updates.
 - This library has been developed as part of the [onedb](http://www.onedb.de) project.
 
-Usage examples in the following:
-
-- [Executors](https://github.com/mxro/oneUtils/blob/master/README.md#executors)
-- [Timers](https://github.com/mxro/oneUtils/blob/master/README.md#timers)
-- [Collections](https://github.com/mxro/oneUtils/blob/master/README.md#collections)
+Usage examples in the following for [Executors](https://github.com/mxro/oneUtils/blob/master/README.md#executors), 
+[Timers](https://github.com/mxro/oneUtils/blob/master/README.md#timers) and [Collections](https://github.com/mxro/oneUtils/blob/master/README.md#collections)
 
 ## Executors
 
@@ -145,7 +142,7 @@ The API further allows for an abstract way to create thread-safe collections (us
 compile in a GWT app).
 
 ```java
-  		final Concurrency con = OneUtilsJre.newJreConcurrency();
+		final Concurrency con = OneUtilsJre.newJreConcurrency();
 		// ^-- replace with 'new GwtConcurrency()' for GWT environments
 		// see https://gist.github.com/2791639
 
