@@ -1,9 +1,8 @@
 package one.utils.concurrent;
 
-
 /**
  * Basic concurrency operations, most of which can be emulated in a one-thread
- * enviromnet (like JavaScript).
+ * environment (like JavaScript).
  * 
  * @author mroh004
  * 
