@@ -1,5 +1,6 @@
 package one.utils.keybuilder;
 
+import one.utils.internal.keybuilder.IdentityKeyBuilder;
 import one.utils.internal.keybuilder.IntegerKeyBuilder;
 import one.utils.internal.keybuilder.StringCharKeyBuilder;
 import one.utils.internal.keybuilder.StringDotKeyBuilder;
@@ -27,6 +28,10 @@ public class KeyBuilders {
 	public static KeyBuilder<String> newStringShortHashKeyBuilder(
 			final int keyLength) {
 		return new StringShortHashKeyBuilder(keyLength);
+	}
+
+	public static KeyBuilder<String> newIdentityStringBuilder() {
+		return new IdentityKeyBuilder();
 	}
 
 }
