@@ -6,7 +6,7 @@ package one.utils.tests;
 import java.util.Arrays;
 import java.util.List;
 
-
+import one.utils.internal.keybuilder.IdentityKeyBuilder;
 import one.utils.internal.keybuilder.StringDotKeyBuilder;
 import one.utils.internal.keybuilder.StringHashKeyBuilder;
 
@@ -40,6 +40,28 @@ public class TestKeyBuilder {
 		Assert.assertTrue(key.size() > 3);
 
 		Assert.assertTrue(key.get(0).length() == 1);
+	}
+
+	@Test
+	public void test_identity_key_builder() {
+		{
+			final IdentityKeyBuilder kb = new IdentityKeyBuilder();
+
+			final List<String> key = kb.makeKey("max1@test.com");
+
+			Assert.assertEquals("max1@test.com", kb.retrieveKey(key));
+		}
+
+		{
+			final IdentityKeyBuilder kb = new IdentityKeyBuilder();
+
+			final String keyValue = "6**&";
+
+			final List<String> key = kb.makeKey(keyValue);
+
+			Assert.assertEquals(keyValue, kb.retrieveKey(key));
+		}
+
 	}
 
 }
