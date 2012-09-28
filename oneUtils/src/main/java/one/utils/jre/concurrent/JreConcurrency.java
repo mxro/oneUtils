@@ -55,13 +55,20 @@ public class JreConcurrency implements Concurrency {
 				return new OneExecutor() {
 
 					@Override
-					public void execute(final Runnable runnable) {
+					public Object execute(final Runnable runnable) {
 						runnable.run();
+						return Thread.currentThread();
 					}
 
 					@Override
 					public void shutdown(final WhenExecutorShutDown callback) {
 						callback.thenDo();
+					}
+
+					@Override
+					public Object getCurrentThread() {
+
+						return Thread.currentThread();
 					}
 
 				};

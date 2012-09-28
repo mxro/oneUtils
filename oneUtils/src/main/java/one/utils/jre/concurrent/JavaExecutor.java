@@ -1,5 +1,6 @@
 package one.utils.jre.concurrent;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -8,9 +9,34 @@ import one.utils.concurrent.OneExecutor;
 public class JavaExecutor implements OneExecutor {
 	private final ExecutorService executor;
 
+	Thread lastThread;
+
 	@Override
-	public void execute(final Runnable runnable) {
-		executor.execute(runnable);
+	public Object execute(final Runnable runnable) {
+		final CountDownLatch latch = new CountDownLatch(2);
+
+		executor.execute(new Runnable() {
+
+			@Override
+			public void run() {
+				lastThread = Thread.currentThread();
+				latch.countDown();
+				runnable.run();
+			}
+		});
+
+		latch.countDown();
+
+		if (lastThread == null) {
+			try {
+				latch.await(5000, TimeUnit.MILLISECONDS);
+			} catch (final InterruptedException e) {
+				throw new RuntimeException(
+						"Cannot determine handle of thread to be executed.");
+			}
+		}
+
+		return lastThread;
 	}
 
 	@Override
@@ -40,6 +66,12 @@ public class JavaExecutor implements OneExecutor {
 	public JavaExecutor(final ExecutorService executor) {
 		super();
 		this.executor = executor;
+	}
+
+	@Override
+	public Object getCurrentThread() {
+
+		return Thread.currentThread();
 	}
 
 }

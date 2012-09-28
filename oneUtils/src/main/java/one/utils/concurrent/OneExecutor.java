@@ -2,7 +2,14 @@ package one.utils.concurrent;
 
 public interface OneExecutor {
 
-	public void execute(Runnable runnable);
+	/**
+	 * Returns an object representing the thread used to execute the runnable if
+	 * available.
+	 * 
+	 * @param runnable
+	 * @return
+	 */
+	public Object execute(Runnable runnable);
 
 	public interface WhenExecutorShutDown {
 
@@ -13,6 +20,13 @@ public interface OneExecutor {
 
 		public void onFailure(Throwable t);
 	}
+
+	/**
+	 * Retunrs the current thread of the caller.
+	 * 
+	 * @return
+	 */
+	public Object getCurrentThread();
 
 	public void shutdown(WhenExecutorShutDown callback);
 
