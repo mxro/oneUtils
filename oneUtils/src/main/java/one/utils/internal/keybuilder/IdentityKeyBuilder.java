@@ -16,7 +16,7 @@ public class IdentityKeyBuilder implements ReversableKeyBuilder<String> {
 	 */
 	private class URLParamEncoder {
 
-		public String encode(final String input) {
+		public final String encode(final String input) {
 			final StringBuilder resultStr = new StringBuilder();
 			for (final char ch : input.toCharArray()) {
 				if (isUnsafe(ch)) {
@@ -30,11 +30,11 @@ public class IdentityKeyBuilder implements ReversableKeyBuilder<String> {
 			return resultStr.toString();
 		}
 
-		private char toHex(final int ch) {
+		private final char toHex(final int ch) {
 			return (char) (ch < 10 ? '0' + ch : 'A' + ch - 10);
 		}
 
-		private boolean isUnsafe(final char ch) {
+		private final boolean isUnsafe(final char ch) {
 			if (ch > 128 || ch < 0)
 				return true;
 			return " %$&+,/:;=?@<>#%".indexOf(ch) >= 0;
