@@ -1,7 +1,6 @@
 package one.utils.internal.keybuilder;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +40,77 @@ public class IdentityKeyBuilder implements ReversableKeyBuilder<String> {
 			return " %$&+,/:;=?@<>#%".indexOf(ch) >= 0;
 		}
 
+		public final String decodeUri(final String uri, final String encoding) {
+			assert (encoding != null && encoding.length() == 0) : "Illegal encoding: "
+					+ encoding;
+
+			final int uriLenght = uri.length();
+
+			// dynamic vars
+			int i = 0;
+			final StringBuffer sb = new StringBuffer();
+			char scannedCharacter;
+			boolean changed = false;
+			while (i < uriLenght) {
+				scannedCharacter = uri.charAt(i);
+				switch (scannedCharacter) {
+				case '+':
+					sb.append(' ');
+					i++;
+					changed = true;
+					break;
+				case '%':
+					try {
+						final int startIndex = i;
+						final byte[] bytes = new byte[(uriLenght - startIndex) / 3];
+						int pos = 0;
+						int deltaIndex = 0;
+						while ((((startIndex + deltaIndex) + 2) < uriLenght)
+								&& (scannedCharacter == '%')) {
+							// build the interger
+							final int v = Integer.parseInt(uri.substring(
+									(startIndex + deltaIndex) + 1,
+									(startIndex + deltaIndex) + 3), 16);
+							if (v < 0) {
+								throw new IllegalArgumentException(
+										"Url decoding error.");
+							}
+							bytes[pos++] = (byte) v;
+
+							deltaIndex = deltaIndex + 3;
+							if (i < uriLenght) {
+								scannedCharacter = uri
+										.charAt((startIndex + deltaIndex));
+							}
+						}
+						i = startIndex + deltaIndex;
+
+						if ((i < uriLenght) && (scannedCharacter == '%'))
+							throw new IllegalArgumentException(
+									"Url decoding error.");
+
+						try {
+							sb.append(new String(bytes, 0, pos, encoding));
+						} catch (final UnsupportedEncodingException e) {
+							throw new RuntimeException(e);
+						}
+					} catch (final NumberFormatException e) {
+						throw new IllegalArgumentException(
+								"Url decoding error. Illegal number format: "
+										+ e.getMessage());
+					}
+					changed = true;
+					break;
+				default:
+					sb.append(scannedCharacter);
+					i++;
+					break;
+				}
+			}
+
+			return (changed ? sb.toString() : uri);
+		}
+
 	}
 
 	@Override
@@ -52,11 +122,9 @@ public class IdentityKeyBuilder implements ReversableKeyBuilder<String> {
 
 	@Override
 	public String retrieveKey(final List<String> keyElements) {
-		try {
-			return URLDecoder.decode(keyElements.get(0), "UTF-8");
-		} catch (final UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
+
+		return new URLParamEncoder().decodeUri(keyElements.get(0), "UTF-8");
+
 	}
 
 }
