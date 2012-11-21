@@ -15,6 +15,9 @@ public class JavaExecutor implements OneExecutor {
 	public Object execute(final Runnable runnable) {
 		final CountDownLatch latch = new CountDownLatch(2);
 
+		assert !executor.isShutdown() && !executor.isTerminated() : "Cannot execute task as executor is shut down. "
+				+ executor.toString() + " " + runnable;
+
 		executor.execute(new Runnable() {
 
 			@Override

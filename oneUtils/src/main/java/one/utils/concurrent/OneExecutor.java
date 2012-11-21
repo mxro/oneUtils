@@ -22,7 +22,7 @@ public interface OneExecutor {
 	}
 
 	/**
-	 * Retunrs the current thread of the caller.
+	 * Returns the current thread of the caller.
 	 * 
 	 * @return
 	 */
