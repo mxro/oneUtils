@@ -12,4 +12,8 @@ import java.io.Serializable;
 public interface ComponentConfiguration<C extends ServerComponent> extends
 		Serializable {
 
+	public C init();
+
+	public boolean isBackgroundService();
+
 }
