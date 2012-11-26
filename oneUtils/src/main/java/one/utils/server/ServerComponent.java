@@ -6,13 +6,13 @@
 package one.utils.server;
 
 /**
- * A server which can be shut down.
+ * A component of a server process.
  * 
  * @author <a href="http://www.mxro.de/">Max Erik Rohde</a>
  * 
  *         Copyright Max Erik Rohde 2011. All rights reserved.
  */
-public interface ShutdownServer {
+public interface ServerComponent {
 
 	/**
 	 * This service can be called to shutdown this server 'gracefully'.
