@@ -12,7 +12,7 @@ package one.utils.server;
  * 
  *         Copyright Max Erik Rohde 2011. All rights reserved.
  */
-public interface ServerComponent<Conf extends ComponentConfiguration<?>> {
+public interface ServerComponent {
 
 	/**
 	 * This service can be called to shutdown this components 'gracefully'.
@@ -26,6 +26,20 @@ public interface ServerComponent<Conf extends ComponentConfiguration<?>> {
 	 * 
 	 * @param callback
 	 */
-	public void start(Conf conf, StartCallback callback);
+	public void start(StartCallback callback);
+
+	/**
+	 * Set a configuration for this component
+	 * 
+	 * @param conf
+	 */
+	public void injectConfiguration(ComponentConfiguration<?> conf);
+
+	/**
+	 * Set a server context for this component
+	 * 
+	 * @param context
+	 */
+	public void injectContext(ComponentContext context);
 
 }
