@@ -6,6 +6,8 @@ package one.utils.server;
  * @author Max
  * 
  */
-public interface ServerComponentFactory {
+public interface ServerComponentFactory<C extends ServerComponent, Conf extends ComponentConfiguration<C>> {
+
+	public C init(Conf conf);
 
 }

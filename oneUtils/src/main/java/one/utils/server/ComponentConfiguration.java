@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @author Max
  * 
  */
-public interface ComponentConfiguration extends Serializable {
+public interface ComponentConfiguration<C extends ServerComponent> extends
+		Serializable {
 
 }
