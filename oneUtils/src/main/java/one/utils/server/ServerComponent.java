@@ -12,13 +12,20 @@ package one.utils.server;
  * 
  *         Copyright Max Erik Rohde 2011. All rights reserved.
  */
-public interface ServerComponent {
+public interface ServerComponent<Conf extends ComponentConfiguration<?>> {
 
 	/**
-	 * This service can be called to shutdown this server 'gracefully'.
+	 * This service can be called to shutdown this components 'gracefully'.
 	 * 
 	 * @param callback
 	 */
-	public void executeShutdown(ShutdownCallback callback);
+	public void stop(ShutdownCallback callback);
+
+	/**
+	 * Starting up this server component.
+	 * 
+	 * @param callback
+	 */
+	public void start(Conf conf, StartCallback callback);
 
 }
