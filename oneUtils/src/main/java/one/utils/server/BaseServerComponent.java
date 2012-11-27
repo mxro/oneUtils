@@ -13,7 +13,7 @@ public class BaseServerComponent implements ServerComponent {
 	}
 
 	@Override
-	public void injectConfiguration(final ComponentConfiguration<?> conf) {
+	public void injectConfiguration(final ComponentConfiguration conf) {
 		throw new RuntimeException("Method not supported");
 	}
 

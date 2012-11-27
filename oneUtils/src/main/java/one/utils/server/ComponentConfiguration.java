@@ -9,10 +9,7 @@ import java.io.Serializable;
  * @author Max
  * 
  */
-public interface ComponentConfiguration<C extends ServerComponent> extends
-		Serializable {
-
-	public C createComponent();
+public interface ComponentConfiguration extends Serializable {
 
 	public boolean isBackgroundService();
 

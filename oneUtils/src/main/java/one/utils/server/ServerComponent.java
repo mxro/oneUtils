@@ -33,7 +33,7 @@ public interface ServerComponent {
 	 * 
 	 * @param conf
 	 */
-	public void injectConfiguration(ComponentConfiguration<?> conf);
+	public void injectConfiguration(ComponentConfiguration conf);
 
 	/**
 	 * Set a server context for this component
