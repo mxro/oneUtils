@@ -42,4 +42,10 @@ public interface ServerComponent {
 	 */
 	public void injectContext(ComponentContext context);
 
+	/**
+	 * Retrive the current configuration for this component
+	 * 
+	 * @return
+	 */
+	public ComponentConfiguration getConfiguration();
 }

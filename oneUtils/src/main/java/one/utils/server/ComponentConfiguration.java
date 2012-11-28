@@ -13,4 +13,11 @@ public interface ComponentConfiguration extends Serializable {
 
 	public boolean isBackgroundService();
 
+	/**
+	 * A unique ID for this component within the cloud node it is running in.
+	 * 
+	 * @return
+	 */
+	public String getId();
+
 }
