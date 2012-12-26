@@ -27,6 +27,7 @@ public class IdentityKeyBuilder implements ReversableKeyBuilder<String> {
 					resultStr.append(ch);
 				}
 			}
+			// System.out.println(resultStr);
 			return resultStr.toString();
 		}
 
@@ -46,13 +47,13 @@ public class IdentityKeyBuilder implements ReversableKeyBuilder<String> {
 
 			final int uriLenght = uri.length();
 
-			// dynamic vars
 			int i = 0;
-			final StringBuffer sb = new StringBuffer();
+			final StringBuilder sb = new StringBuilder();
 			char scannedCharacter;
 			boolean changed = false;
 			while (i < uriLenght) {
 				scannedCharacter = uri.charAt(i);
+				// System.out.println(scannedCharacter);
 				switch (scannedCharacter) {
 				case '+':
 					sb.append(' ');
@@ -79,8 +80,8 @@ public class IdentityKeyBuilder implements ReversableKeyBuilder<String> {
 
 							deltaIndex = deltaIndex + 3;
 							if (i < uriLenght) {
-								scannedCharacter = uri
-										.charAt((startIndex + deltaIndex));
+								scannedCharacter = uri.charAt((startIndex
+										+ deltaIndex - 1));
 							}
 						}
 						i = startIndex + deltaIndex;
