@@ -62,6 +62,16 @@ public class TestKeyBuilder {
 			Assert.assertEquals(keyValue, kb.retrieveKey(key));
 		}
 
+		{
+			final IdentityKeyBuilder kb = new IdentityKeyBuilder();
+
+			final String keyValue = "6**&@<>!`";
+
+			final List<String> key = kb.makeKey(keyValue);
+
+			Assert.assertEquals(keyValue, kb.retrieveKey(key));
+		}
+
 	}
 
 }
