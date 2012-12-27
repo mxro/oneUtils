@@ -42,8 +42,9 @@ public class IdentityKeyBuilder implements ReversableKeyBuilder<String> {
 		}
 
 		public final String decodeUri(final String uri, final String encoding) {
-			assert (encoding != null && encoding.length() == 0) : "Illegal encoding: "
-					+ encoding;
+			// assert (encoding != null && encoding.length() == 0) :
+			// "Illegal encoding: "
+			// + encoding;
 
 			final int uriLenght = uri.length();
 
