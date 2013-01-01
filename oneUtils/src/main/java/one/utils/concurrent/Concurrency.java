@@ -19,4 +19,5 @@ public interface Concurrency {
 
 	public abstract CollectionFactory newCollection();
 
+	public abstract OneAtomicBoolean newAtomicBoolean(boolean value);
 }

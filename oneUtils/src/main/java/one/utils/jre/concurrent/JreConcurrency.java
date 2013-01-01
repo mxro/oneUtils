@@ -17,11 +17,13 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 import one.utils.concurrent.CollectionFactory;
 import one.utils.concurrent.Concurrency;
 import one.utils.concurrent.ExecutorFactory;
+import one.utils.concurrent.OneAtomicBoolean;
 import one.utils.concurrent.OneExecutor;
 import one.utils.concurrent.OneLock;
 import one.utils.concurrent.OneTimer;
@@ -234,6 +236,37 @@ public class JreConcurrency implements Concurrency {
 				capacity, 50, TimeUnit.MILLISECONDS, workQueue, threadFacory,
 				rejectedExecutionHandler);
 		return executor;
+	}
+
+	@Override
+	public OneAtomicBoolean newAtomicBoolean(final boolean value) {
+
+		return new OneAtomicBoolean() {
+
+			private final AtomicBoolean wrapped = new AtomicBoolean(value);
+
+			@Override
+			public void set(final boolean newValue) {
+				wrapped.set(newValue);
+			}
+
+			@Override
+			public boolean getAndSet(final boolean newValue) {
+
+				return wrapped.getAndSet(newValue);
+			}
+
+			@Override
+			public boolean get() {
+				return wrapped.get();
+			}
+
+			@Override
+			public boolean compareAndSet(final boolean expect,
+					final boolean update) {
+				return wrapped.compareAndSet(expect, update);
+			}
+		};
 	}
 
 }
