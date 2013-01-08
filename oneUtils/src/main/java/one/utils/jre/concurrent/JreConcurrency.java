@@ -31,242 +31,285 @@ import one.utils.concurrent.TimerFactory;
 
 public class JreConcurrency implements Concurrency {
 
-	@Override
-	public ExecutorFactory newExecutor() {
+    private static Boolean isAndroid = null;
 
-		return new ExecutorFactory() {
+    private static boolean isAndroid() {
+        if (isAndroid != null) {
+            return isAndroid;
+        }
 
-			@Override
-			public OneExecutor newSingleThreadExecutor(final Object owner) {
-				final ExecutorService executor = newExecutor(1, owner);
+        isAndroid = System.getProperty("java.vm.name").equalsIgnoreCase(
+                "Dalvik");
+        return isAndroid;
+    }
 
-				return new JavaExecutor(executor);
-			}
+    @Override
+    public ExecutorFactory newExecutor() {
 
-			@Override
-			public OneExecutor newParallelExecutor(
-					final int maxParallelThreads, final Object owner) {
-				final ExecutorService executor = newExecutor(
-						maxParallelThreads, owner);
+        return new ExecutorFactory() {
 
-				return new JavaExecutor(executor);
-			}
+            @Override
+            public OneExecutor newSingleThreadExecutor(final Object owner) {
+                final ExecutorService executor = newExecutor(1, owner);
 
-			@Override
-			public OneExecutor newImmideateExecutor() {
-				return new OneExecutor() {
+                return new JavaExecutor(executor);
+            }
 
-					@Override
-					public Object execute(final Runnable runnable) {
-						runnable.run();
-						return Thread.currentThread();
-					}
+            @Override
+            public OneExecutor newParallelExecutor(
+                    final int maxParallelThreads, final Object owner) {
+                final ExecutorService executor = newExecutor(
+                        maxParallelThreads, owner);
 
-					@Override
-					public void shutdown(final WhenExecutorShutDown callback) {
-						callback.thenDo();
-					}
+                return new JavaExecutor(executor);
+            }
 
-					@Override
-					public Object getCurrentThread() {
+            @Override
+            public OneExecutor newImmideateExecutor() {
+                return new OneExecutor() {
 
-						return Thread.currentThread();
-					}
+                    @Override
+                    public Object execute(final Runnable runnable) {
+                        runnable.run();
+                        return Thread.currentThread();
+                    }
 
-				};
-			}
+                    @Override
+                    public void shutdown(final WhenExecutorShutDown callback) {
+                        callback.thenDo();
+                    }
 
-		};
-	}
+                    @Override
+                    public Object getCurrentThread() {
 
-	@Override
-	public TimerFactory newTimer() {
-		return new TimerFactory() {
+                        return Thread.currentThread();
+                    }
 
-			@Override
-			public OneTimer scheduleOnce(final int when, final Runnable runnable) {
+                };
+            }
 
-				final java.util.Timer javaTimer = new java.util.Timer();
-				final TimerTask timerTask = new TimerTask() {
+        };
+    }
 
-					@Override
-					public void run() {
-						runnable.run();
-					}
+    @Override
+    public TimerFactory newTimer() {
+        return new TimerFactory() {
 
-				};
+            @Override
+            public OneTimer scheduleOnce(final int when, final Runnable runnable) {
 
-				javaTimer.schedule(timerTask, when);
+                final java.util.Timer javaTimer = new java.util.Timer();
+                final TimerTask timerTask = new TimerTask() {
 
-				return new OneTimer() {
+                    @Override
+                    public void run() {
+                        runnable.run();
+                    }
 
-					@Override
-					public void stop() {
-						javaTimer.cancel();
-					}
+                };
 
-				};
+                javaTimer.schedule(timerTask, when);
 
-			}
+                return new OneTimer() {
 
-			@Override
-			public OneTimer scheduleRepeating(final int offsetInMs,
-					final int intervallInMs, final Runnable runnable) {
-				final java.util.Timer javaTimer = new java.util.Timer();
-				final TimerTask timerTask = new TimerTask() {
+                    @Override
+                    public void stop() {
+                        javaTimer.cancel();
+                    }
 
-					@Override
-					public void run() {
-						runnable.run();
-					}
+                };
 
-				};
+            }
 
-				javaTimer.scheduleAtFixedRate(timerTask, offsetInMs,
-						intervallInMs);
+            @Override
+            public OneTimer scheduleRepeating(final int offsetInMs,
+                    final int intervallInMs, final Runnable runnable) {
+                final java.util.Timer javaTimer = new java.util.Timer();
+                final TimerTask timerTask = new TimerTask() {
 
-				return new OneTimer() {
+                    @Override
+                    public void run() {
+                        runnable.run();
+                    }
 
-					@Override
-					public void stop() {
-						javaTimer.cancel();
-					}
+                };
 
-				};
-			}
+                javaTimer.scheduleAtFixedRate(timerTask, offsetInMs,
+                        intervallInMs);
 
-		};
-	}
+                return new OneTimer() {
 
-	@Override
-	public void runLater(final Runnable runnable) {
-		new Thread() {
+                    @Override
+                    public void stop() {
+                        javaTimer.cancel();
+                    }
 
-			@Override
-			public void run() {
-				runnable.run();
-			}
+                };
+            }
 
-		}.start();
-	}
+        };
+    }
 
-	@Override
-	public OneLock newLock() {
+    @Override
+    public void runLater(final Runnable runnable) {
+        new Thread() {
 
-		return new OneLock() {
-			private final ReentrantLock lock = new ReentrantLock();
+            @Override
+            public void run() {
+                runnable.run();
+            }
 
-			@Override
-			public void lock() {
-				lock.lock();
-			}
+        }.start();
+    }
 
-			@Override
-			public void unlock() {
-				lock.unlock();
-			}
+    @Override
+    public OneLock newLock() {
 
-			@Override
-			public boolean isHeldByCurrentThread() {
-				return lock.isHeldByCurrentThread();
-			}
+        return new OneLock() {
+            private final ReentrantLock lock = new ReentrantLock();
 
-		};
-	}
+            @Override
+            public void lock() {
+                lock.lock();
+            }
 
-	@Override
-	public CollectionFactory newCollection() {
+            @Override
+            public void unlock() {
+                lock.unlock();
+            }
 
-		return new CollectionFactory() {
+            @Override
+            public boolean isHeldByCurrentThread() {
+                return lock.isHeldByCurrentThread();
+            }
 
-			@Override
-			public <GPType> Queue<GPType> newThreadSafeQueue(
-					final Class<GPType> itemType) {
-				return new ConcurrentLinkedQueue<GPType>();
-			}
+        };
+    }
 
-			@Override
-			public <ItemType> List<ItemType> newThreadSafeList(
-					final Class<ItemType> itemType) {
+    @Override
+    public CollectionFactory newCollection() {
 
-				return Collections.synchronizedList(new ArrayList<ItemType>());
-			}
+        return new CollectionFactory() {
 
-			@Override
-			public <KeyType, ValueType> Map<KeyType, ValueType> newThreadSafeMap(
-					final Class<KeyType> keyType,
-					final Class<ValueType> valueType) {
-				return Collections
-						.synchronizedMap(new HashMap<KeyType, ValueType>());
-			}
+            @Override
+            public <GPType> Queue<GPType> newThreadSafeQueue(
+                    final Class<GPType> itemType) {
+                return new ConcurrentLinkedQueue<GPType>();
+            }
 
-			@Override
-			public <ItemType> Set<ItemType> newThreadSafeSet(
-					final Class<ItemType> itemType) {
-				return Collections.synchronizedSet(new HashSet<ItemType>());
-			}
-		};
-	}
+            @Override
+            public <ItemType> List<ItemType> newThreadSafeList(
+                    final Class<ItemType> itemType) {
 
-	private static ExecutorService newExecutor(final int capacity,
-			final Object owner) {
-		final BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
-		final String threadName = owner.getClass().getName();
-		final ThreadFactory threadFacory = new ThreadFactory() {
+                return Collections.synchronizedList(new ArrayList<ItemType>());
+            }
 
-			@Override
-			public Thread newThread(final Runnable r) {
+            @Override
+            public <KeyType, ValueType> Map<KeyType, ValueType> newThreadSafeMap(
+                    final Class<KeyType> keyType,
+                    final Class<ValueType> valueType) {
+                return Collections
+                        .synchronizedMap(new HashMap<KeyType, ValueType>());
+            }
 
-				return new Thread(r, threadName);
-			}
-		};
-		final RejectedExecutionHandler rejectedExecutionHandler = new RejectedExecutionHandler() {
+            @Override
+            public <ItemType> Set<ItemType> newThreadSafeSet(
+                    final Class<ItemType> itemType) {
+                return Collections.synchronizedSet(new HashSet<ItemType>());
+            }
+        };
+    }
 
-			@Override
-			public void rejectedExecution(final Runnable arg0,
-					final ThreadPoolExecutor arg1) {
-				throw new RuntimeException(
-						"Thread executor could not execute: [" + arg0 + "]. \n"
-								+ "  Executor: [" + arg1 + "]\n"
-								+ "  Thread owner: [" + threadName + "]");
-			}
-		};
+    private static ExecutorService newExecutor(final int capacity,
+            final Object owner) {
 
-		final ExecutorService executor = new ThreadPoolExecutor(capacity,
-				capacity, 50, TimeUnit.MILLISECONDS, workQueue, threadFacory,
-				rejectedExecutionHandler);
-		return executor;
-	}
+        return newExecutorJvm(capacity, owner);
 
-	@Override
-	public OneAtomicBoolean newAtomicBoolean(final boolean value) {
+    }
 
-		return new OneAtomicBoolean() {
+    private static ExecutorService newExecutorJvm(final int capacity,
+            final Object owner) {
+        final BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
+        final String threadName = owner.getClass().getName();
 
-			private final AtomicBoolean wrapped = new AtomicBoolean(value);
+        final ThreadFactory threadFactory;
+        if (!isAndroid()) {
+            threadFactory = newThreadFactoryJvm(threadName);
+        } else {
+            threadFactory = newThreadFactoryAndroid(threadName);
+        }
 
-			@Override
-			public void set(final boolean newValue) {
-				wrapped.set(newValue);
-			}
+        final RejectedExecutionHandler rejectedExecutionHandler = new RejectedExecutionHandler() {
 
-			@Override
-			public boolean getAndSet(final boolean newValue) {
+            @Override
+            public void rejectedExecution(final Runnable arg0,
+                    final ThreadPoolExecutor arg1) {
+                throw new RuntimeException(
+                        "Thread executor could not execute: [" + arg0 + "]. \n"
+                                + "  Executor: [" + arg1 + "]\n"
+                                + "  Thread owner: [" + threadName + "]");
+            }
+        };
 
-				return wrapped.getAndSet(newValue);
-			}
+        final ExecutorService executor = new ThreadPoolExecutor(capacity,
+                capacity, 50, TimeUnit.MILLISECONDS, workQueue, threadFactory,
+                rejectedExecutionHandler);
+        return executor;
+    }
 
-			@Override
-			public boolean get() {
-				return wrapped.get();
-			}
+    private static ThreadFactory newThreadFactoryAndroid(final String threadName) {
+        final ThreadFactory threadFacory = new ThreadFactory() {
 
-			@Override
-			public boolean compareAndSet(final boolean expect,
-					final boolean update) {
-				return wrapped.compareAndSet(expect, update);
-			}
-		};
-	}
+            @Override
+            public Thread newThread(final Runnable r) {
+                return new Thread(Thread.currentThread().getThreadGroup(), r,
+                        threadName, 65536 * 8);
+            }
+        };
+        return threadFacory;
+    }
+
+    private static ThreadFactory newThreadFactoryJvm(final String threadName) {
+        final ThreadFactory threadFacory = new ThreadFactory() {
+
+            @Override
+            public Thread newThread(final Runnable r) {
+
+                return new Thread(r, threadName);
+            }
+        };
+        return threadFacory;
+    }
+
+    @Override
+    public OneAtomicBoolean newAtomicBoolean(final boolean value) {
+
+        return new OneAtomicBoolean() {
+
+            private final AtomicBoolean wrapped = new AtomicBoolean(value);
+
+            @Override
+            public void set(final boolean newValue) {
+                wrapped.set(newValue);
+            }
+
+            @Override
+            public boolean getAndSet(final boolean newValue) {
+
+                return wrapped.getAndSet(newValue);
+            }
+
+            @Override
+            public boolean get() {
+                return wrapped.get();
+            }
+
+            @Override
+            public boolean compareAndSet(final boolean expect,
+                    final boolean update) {
+                return wrapped.compareAndSet(expect, update);
+            }
+        };
+    }
 
 }
