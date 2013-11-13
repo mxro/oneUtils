@@ -8,6 +8,8 @@
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
 	
+	<inherits name='io.nextweb.fn.NextwebFn'></inherits>
+	
   <!-- Other module inherits                                      -->
 <!-- <inherits name='com.google.common.Guava'></inherits>-->
 

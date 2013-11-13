@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Template: Source + GWT + in workspace dependencies 27.11.2010 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<groupId>one.utils</groupId>
 	<artifactId>oneUtils</artifactId>
 	<version>0.0.5-SNAPSHOT</version>
@@ -24,6 +24,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
 	<!-- Dependent Modules -->
 	<dependencies>
+
+		<dependency>
+			<groupId>io.nextweb.fn</groupId>
+			<artifactId>nextweb-fn</artifactId>
+			<version>[0.0.1,)</version>
+		</dependency>
 
 		<!-- only for gwt maven plugin!!! -->
 		<dependency>
@@ -133,7 +139,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
-					
+
 				</executions>
 			</plugin>
 
@@ -224,7 +230,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			</resource>
 
 		</resources>
-		
+
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
@@ -250,6 +256,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<url>${repos.appjangle-snapshots}</url>
 		</snapshotRepository>
 	</distributionManagement>
-	
+
 
 </project>
