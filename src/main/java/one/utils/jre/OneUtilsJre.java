@@ -3,7 +3,7 @@ package one.utils.jre;
 import java.io.IOException;
 import java.io.InputStream;
 
-import one.utils.concurrent.Concurrency;
+import de.mxro.concurrency.Concurrency;
 import one.utils.jre.concurrent.JreConcurrency;
 import one.utils.jre.internal.IOUtils;
 

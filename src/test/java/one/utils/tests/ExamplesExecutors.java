@@ -1,8 +1,8 @@
 package one.utils.tests;
 
-import one.utils.concurrent.Concurrency;
-import one.utils.concurrent.Executor;
-import one.utils.concurrent.Executor.WhenExecutorShutDown;
+import de.mxro.concurrency.Concurrency;
+import de.mxro.concurrency.Executor;
+import de.mxro.concurrency.Executor.WhenExecutorShutDown;
 import one.utils.jre.OneUtilsJre;
 
 public class ExamplesExecutors {

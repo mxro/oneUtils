@@ -1,6 +1,6 @@
 package one.utils.tests;
 
-import one.utils.concurrent.Concurrency;
+import de.mxro.concurrency.Concurrency;
 import one.utils.jre.OneUtilsJre;
 
 public class ExamplesTimers {

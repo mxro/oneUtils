@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-import one.utils.concurrent.Concurrency;
+import de.mxro.concurrency.Concurrency;
 import one.utils.jre.OneUtilsJre;
 
 public class ExamplesCollections {
