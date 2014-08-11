@@ -28,7 +28,7 @@
 		<dependency>
 			
 			<groupId>de.mxro.concurrency</groupId>
-			<artifactId>concurrency</artifactId>
+			<artifactId>concurrency-api</artifactId>
 			<version>[0.0.1,)</version>
 		</dependency>
 
