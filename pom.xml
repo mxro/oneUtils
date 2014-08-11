@@ -32,12 +32,6 @@
 			<version>[0.0.1,)</version>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>io.nextweb.fn</groupId>
-			<artifactId>nextweb-fn</artifactId>
-			<version>[0.0.1,)</version>
-		</dependency>-->
-
 		<!-- only for gwt maven plugin!!! -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
