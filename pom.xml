@@ -8,7 +8,6 @@
 	<description>General utility methods for GWT and JRE environments
 		without dependency to any other module.</description>
 	<url>https://github.com/mxro/oneUtils</url>
-	
 	<properties>
 		<module.gwtVersion>2.2.0</module.gwtVersion>
 		<module.draftCompile>true</module.draftCompile>
