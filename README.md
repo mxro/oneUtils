@@ -5,6 +5,12 @@ oneUtils
 
 **Note**: This project has been superseded by the project [concurrency-api](https://github.com/mxro/concurrency-api).
 
+## Maven Build
+
+- [All Project Reports](http://modules.appjangle.com/oneUtils/latest/project-reports.html)
+
+## Deprecated documentation
+
 Develop shared codebases for JRE and GWT Apps. Core feature of this library: Abstract Concurrency API.
 
 Please note:
