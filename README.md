@@ -1,6 +1,10 @@
 oneUtils
 ========
 
+[![Build Status](https://travis-ci.org/mxro/oneUtils.svg?branch=master)](https://travis-ci.org/mxro/oneUtils)
+
+**Note**: This project has been superseded by the project [concurrency-api](https://github.com/mxro/concurrency-api).
+
 Develop shared codebases for JRE and GWT Apps. Core feature of this library: Abstract Concurrency API.
 
 Please note:
