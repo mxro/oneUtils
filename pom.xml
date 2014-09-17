@@ -23,9 +23,13 @@
 
 	<!-- Dependent Modules -->
 	<dependencies>
-
 		<dependency>
-			
+			<groupId>de.mxro.factories</groupId>
+			<artifactId>factories</artifactId>
+			<version>[0.0.1,)</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>de.mxro.concurrency</groupId>
 			<artifactId>concurrency-api</artifactId>
 			<version>[0.0.1,)</version>
@@ -132,16 +136,7 @@
 				</executions>
 			</plugin>
 
-			<!-- FOR MAVEN ECLIPSE PLUGIN -->
-			<!-- Dependency Plugin used to copy the dependency JARs into the root 
-				project folder. There the Maven eclipse plugin will add them to the classpath 
-				of PDE projects. -->
-			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
 
-				</executions>
-			</plugin>
 
 			<!-- Cleanup necessary because of PDE tweaks, clear the project directory -->
 			<plugin>
@@ -179,7 +174,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
@@ -287,7 +282,7 @@
 					</reportPlugins>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 
 		<!-- RESOURCES -->
@@ -364,14 +359,14 @@
 			<url>${repos.appjangle-snapshots}</url>
 		</snapshotRepository>
 	</distributionManagement>
-	
+
 	<repositories>
 		<repository>
 			<id>Appjangle Releases</id>
 			<url>http://maven.appjangle.com/appjangle/releases</url>
 		</repository>
 	</repositories>
-	
+
 	<developers>
 		<developer>
 			<id>mxro</id>
