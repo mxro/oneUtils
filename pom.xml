@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<groupId>one.utils</groupId>
 	<artifactId>oneUtils</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<description>General utility methods for GWT and JRE environments
 		without dependency to any other module.</description>
 	<url>https://github.com/mxro/oneUtils</url>
