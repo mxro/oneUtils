@@ -23,11 +23,7 @@
 
 	<!-- Dependent Modules -->
 	<dependencies>
-		<dependency>
-			<groupId>de.mxro.factories</groupId>
-			<artifactId>factories</artifactId>
-			<version>[0.0.1,)</version>
-		</dependency>
+		
 		
 		<dependency>
 			<groupId>de.mxro.concurrency</groupId>
@@ -217,6 +213,7 @@
 								<links>
 									<link>http://modules.appjangle.com/fn-api/latest/apidocs/</link>
 									<link>http://modules.appjangle.com/concurrency-api/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/factories/latest/apidocs/</link>
 								</links>
 							</configuration>
 						</plugin>
