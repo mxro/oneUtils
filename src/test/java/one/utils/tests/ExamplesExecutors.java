@@ -1,8 +1,8 @@
 package one.utils.tests;
 
 import de.mxro.concurrency.Concurrency;
-import de.mxro.concurrency.Executor;
-import de.mxro.concurrency.Executor.WhenExecutorShutDown;
+import de.mxro.concurrency.wrappers.SimpleExecutor;
+import de.mxro.concurrency.wrappers.SimpleExecutor.WhenExecutorShutDown;
 import one.utils.jre.OneUtilsJre;
 
 public class ExamplesExecutors {
@@ -21,7 +21,7 @@ public class ExamplesExecutors {
 
 		// Immediate executors will execute the instructions immediately in the
 		// calling thread.
-		final Executor immEx = con.newExecutor().newImmideateExecutor();
+		final SimpleExecutor immEx = con.newExecutor().newImmideateExecutor();
 		immEx.execute(new Runnable() {
 
 			@Override
@@ -53,7 +53,7 @@ public class ExamplesExecutors {
 		// object.
 		// This object can help in debugging by pointing to the place where
 		// the executor was created.
-		final Executor singEx = con.newExecutor().newSingleThreadExecutor(
+		final SimpleExecutor singEx = con.newExecutor().newSingleThreadExecutor(
 				new Object() {
 				});
 
@@ -72,7 +72,7 @@ public class ExamplesExecutors {
 		// Multi-Thread Executors are backed by a Single Thread Executor in a
 		// GWT environment. In an JRE environment, they are backed by a
 		// Thread Pool.
-		final Executor multEx = con.newExecutor().newParallelExecutor(3,
+		final SimpleExecutor multEx = con.newExecutor().newParallelExecutor(3,
 				new Object() {
 				});
 
