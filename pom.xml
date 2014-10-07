@@ -88,18 +88,7 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.8</version>
-				<configuration>
-					<pde>true</pde>
-				</configuration>
-				<!-- <sourceExcludes> <sourceExclude>**/.svn/**</sourceExclude> </sourceExcludes> 
-					<sourceIncludes> <sourceInclude>**/*.myExtension</sourceInclude> </sourceIncludes> 
-					</configuration> -->
-			</plugin>
-
+			
 
 			<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 			<!-- For GWT -->
@@ -107,7 +96,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.2.0</version>
+				<version>${module.gwtVersion}</version>
 				<configuration>
 
 					<draftCompile>${module.draftCompile}</draftCompile>
