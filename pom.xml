@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>de.mxro.concurrency</groupId>
 			<artifactId>concurrency-api</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.5</version>
 		</dependency>
 
 		<!-- only for gwt maven plugin!!! -->
