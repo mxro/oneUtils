@@ -11,17 +11,18 @@ package one.utils.server;
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  * 
  */
+@Deprecated
 public interface ShutdownCallback {
 
-	/**
-	 * This method is called when the shutdown could be completed successfully.
-	 */
-	public void onShutdownComplete();
+    /**
+     * This method is called when the shutdown could be completed successfully.
+     */
+    public void onShutdownComplete();
 
-	/**
-	 * This method is called when an error occurs in the shutdown process.
-	 * 
-	 * @param t
-	 */
-	public void onFailure(Throwable t);
+    /**
+     * This method is called when an error occurs in the shutdown process.
+     * 
+     * @param t
+     */
+    public void onFailure(Throwable t);
 }
