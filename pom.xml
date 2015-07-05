@@ -22,8 +22,8 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>de.mxro.concurrency</groupId>
-			<artifactId>concurrency-api</artifactId>
+			<groupId>org.javadelight</groupId>
+			<artifactId>delight-concurrency</artifactId>
 			<version>0.0.5</version>
 		</dependency>
 
