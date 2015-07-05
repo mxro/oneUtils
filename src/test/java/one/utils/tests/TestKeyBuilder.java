@@ -6,12 +6,12 @@ package one.utils.tests;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import one.utils.internal.keybuilder.IdentityKeyBuilder;
 import one.utils.internal.keybuilder.StringDotKeyBuilder;
 import one.utils.internal.keybuilder.StringHashKeyBuilder;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * @author <a href="http://www.mxro.de/">Max Erik Rohde</a>
