@@ -1,11 +1,12 @@
 package one.utils.tests;
 
+import delight.concurrency.Concurrency;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-import de.mxro.concurrency.Concurrency;
 import one.utils.jre.OneUtilsJre;
 
 public class ExamplesCollections {

@@ -1,10 +1,11 @@
 package one.utils.jre;
 
+import delight.concurrency.Concurrency;
+import delight.concurrency.jre.JreConcurrency;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-import de.mxro.concurrency.Concurrency;
-import de.mxro.concurrency.jre.JreConcurrency;
 import one.utils.jre.internal.IOUtils;
 
 public class OneUtilsJre {

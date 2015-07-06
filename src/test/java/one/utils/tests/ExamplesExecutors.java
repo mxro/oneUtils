@@ -1,8 +1,9 @@
 package one.utils.tests;
 
-import de.mxro.concurrency.Concurrency;
-import de.mxro.concurrency.wrappers.SimpleExecutor;
-import de.mxro.concurrency.wrappers.SimpleExecutor.WhenExecutorShutDown;
+import delight.concurrency.Concurrency;
+import delight.concurrency.wrappers.SimpleExecutor;
+import delight.concurrency.wrappers.SimpleExecutor.WhenExecutorShutDown;
+
 import one.utils.jre.OneUtilsJre;
 
 public class ExamplesExecutors {

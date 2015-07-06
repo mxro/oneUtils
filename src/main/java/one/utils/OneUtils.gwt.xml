@@ -4,7 +4,7 @@
 	<!-- Inherit the core Web Toolkit stuff. -->
 	<inherits name='com.google.gwt.user.User' />
 
-	<inherits name='de.mxro.concurrency.Concurrency'></inherits>
+	<inherits name='delight.concurrency.Concurrency'></inherits>
 
 	<!-- Other module inherits -->
 
