@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Template: Source + GWT + in workspace dependencies 27.11.2010 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Template: Source 
+	+ GWT + in workspace dependencies 27.11.2010 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<groupId>one.utils</groupId>
 	<artifactId>oneUtils</artifactId>
 	<version>0.1.1</version>
@@ -25,6 +28,12 @@
 			<groupId>org.javadelight</groupId>
 			<artifactId>delight-concurrency</artifactId>
 			<version>0.0.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.javadelight</groupId>
+			<artifactId>delight-strings</artifactId>
+			<version>[0.0.1,)</version>
 		</dependency>
 
 		<!-- only for gwt maven plugin!!! -->
@@ -85,7 +94,7 @@
 				</configuration>
 			</plugin>
 
-			
+
 
 			<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 			<!-- For GWT -->
@@ -148,8 +157,8 @@
 						</goals>
 						<configuration>
 							<tasks>
-								<delete file="${basedir}/META-INF/MANIFEST.MF"/>
-								<copy file="target/classes/META-INF/MANIFEST.MF" tofile="${basedir}/META-INF/MANIFEST.MF"/>
+								<delete file="${basedir}/META-INF/MANIFEST.MF" />
+								<copy file="target/classes/META-INF/MANIFEST.MF" tofile="${basedir}/META-INF/MANIFEST.MF" />
 							</tasks>
 						</configuration>
 					</execution>
