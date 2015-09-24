@@ -2,7 +2,7 @@ package one.utils.tests;
 
 import delight.concurrency.Concurrency;
 import delight.concurrency.wrappers.SimpleExecutor;
-import delight.concurrency.wrappers.SimpleExecutor.WhenExecutorShutDown;
+import delight.concurrency.wrappers.WhenExecutorShutDown;
 
 import one.utils.jre.OneUtilsJre;
 
