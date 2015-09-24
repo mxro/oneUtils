@@ -36,7 +36,7 @@ public class ExamplesExecutors {
 		immEx.shutdown(new WhenExecutorShutDown() {
 
 			@Override
-			public void thenDo() {
+			public void onSuccess() {
 
 			}
 
