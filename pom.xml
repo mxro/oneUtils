@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>org.javadelight</groupId>
 			<artifactId>delight-strings</artifactId>
-			<version>[0.0.1,)</version>
+			<version>0.0.3</version>
 		</dependency>
 
 		<!-- only for gwt maven plugin!!! -->
