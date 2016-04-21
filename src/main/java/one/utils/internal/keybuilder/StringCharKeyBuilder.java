@@ -3,7 +3,7 @@
  */
 package one.utils.internal.keybuilder;
 
-import delight.strings.SanitzeStrings;
+import delight.strings.SanitizeStrings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class StringCharKeyBuilder implements ReversableKeyBuilder<String> {
 				wholeKey.length());
 
 		for (final char c : wholeKey.toCharArray()) {
-			if (SanitzeStrings.isSimpleCharacter(c)) {
+			if (SanitizeStrings.isSimpleCharacter(c)) {
 				keyElements.add(String.valueOf(c));
 			} else {
 				final byte b = (byte) c;
