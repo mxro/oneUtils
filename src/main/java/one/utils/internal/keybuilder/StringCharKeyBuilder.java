@@ -38,7 +38,7 @@ public class StringCharKeyBuilder implements ReversableKeyBuilder<String> {
 				wholeKey.length());
 
 		for (final char c : wholeKey.toCharArray()) {
-			if (SanitizeStrings.isSimpleCharacter(c)) {
+			if (SanitizeStrings.isUrlPathCharacter(c)) {
 				keyElements.add(String.valueOf(c));
 			} else {
 				final byte b = (byte) c;
