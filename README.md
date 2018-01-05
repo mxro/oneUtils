@@ -1,6 +1,8 @@
 oneUtils
 ========
 
+**Important** This project has moved to [delight-utils](https://github.com/javadelight/delight-utils)
+
 [![Build Status](https://travis-ci.org/mxro/oneUtils.svg?branch=master)](https://travis-ci.org/mxro/oneUtils)
 
 **Note**: This project has been superseded by the project [concurrency-api](https://github.com/mxro/concurrency-api).
